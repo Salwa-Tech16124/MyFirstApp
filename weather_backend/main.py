@@ -16,13 +16,16 @@ BASE_URL = "https://api.weatherapi.com/v1/current.json"
 app = FastAPI()
 
 # Enable CORS for frontend
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://weather-app-salwa-kazmis-projects.vercel.app"],  # replace with your Vercel URL
+    allow_origins=["https://weather-app-salwa-kazmis-projects.vercel.app"],  # your Vercel frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Create SQLite DB
 conn = sqlite3.connect("weather.db", check_same_thread=False)
