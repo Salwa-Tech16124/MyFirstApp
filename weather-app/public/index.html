@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Weather App with enhanced UI effects"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-0Uv4XhK6C1LhIj5m2EnwCM1zG7j6pQ2X+3cUymZV/j3ZzJ9qA6e8nE9Roql1ZkS8v1nGwS5H1V6z2nYq5ChZ0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/App.css" />
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Weather App</title>
+
+    <style>
+      /* Background globe image */
+      body {
+        background: url('%PUBLIC_URL%/images/globe-bg.jpeg') no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      /* Overlay for better text visibility */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background: rgba(255, 255, 255, 0.7); */
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" class="animate__animated animate__fadeIn"></div>
+    
+<footer class="site-footer">
+  &copy; 2025 Salwa Kazmi & Pranav Thakur. All rights reserved.
+</footer>
+</body>
+</html>
