@@ -1,29 +1,28 @@
 import os
 from dotenv import load_dotenv
-
-load_dotenv()  # load variables from .env
-API_KEY = os.environ.get("WEATHER_API_KEY")
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 import requests
 import sqlite3
 from datetime import datetime
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+# Load environment variables
+load_dotenv()
+API_KEY = os.environ.get("WEATHER_API_KEY", "d67ce18090984510989191413251008")  # fallback key
 
+BASE_URL = "https://api.weatherapi.com/v1/current.json"
 
+# Initialize FastAPI
 app = FastAPI()
 
-# Enable CORS for all origins (so frontend can connect)
+# Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow all origins
+    allow_origins=["https://weather-app-salwa-kazmis-projects.vercel.app"],  # replace with your Vercel URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-API_KEY = "d67ce18090984510989191413251008"
-BASE_URL = "https://api.weatherapi.com/v1/current.json"
 
 # Create SQLite DB
 conn = sqlite3.connect("weather.db", check_same_thread=False)
@@ -39,6 +38,7 @@ CREATE TABLE IF NOT EXISTS history (
 """)
 conn.commit()
 
+# Weather endpoint
 @app.get("/weather/{city}")
 def get_weather(city: str):
     params = {"key": API_KEY, "q": city}
@@ -69,6 +69,7 @@ def get_weather(city: str):
         "icon": icon
     }
 
+# History endpoint
 @app.get("/history")
 def get_history():
     cursor.execute("SELECT city, temperature, description FROM history ORDER BY id DESC LIMIT 5")
